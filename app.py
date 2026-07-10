@@ -70,6 +70,17 @@ def index():
 def health():
     return jsonify({"status": "ok"})
 
-
+@app.get("/about-us")
+def about_us():
+    return jsonify(
+        {
+            "members" : [
+                {
+                    "name" : "Shagato Chowdhury",
+                    "role" : "DevOPS"
+                }
+            ]
+        }
+    )
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
