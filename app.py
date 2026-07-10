@@ -1,9 +1,13 @@
 import os
 
 import psycopg2
+from dotenv import load_dotenv
 from flask import Flask, jsonify
 from redis import Redis
 from redis.exceptions import RedisError
+
+# Load environment variables from a .env file if present.
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -14,6 +18,8 @@ DB_USER = os.getenv("DB_USER", "appuser")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "apppassword")
 REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
 REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+PORT = int(os.getenv("PORT", "5000"))
+DEBUG = os.getenv("FLASK_DEBUG", "false").lower() in ("1", "true", "yes")
 
 
 def get_pg_connection():
@@ -66,4 +72,4 @@ def health():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
