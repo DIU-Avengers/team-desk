@@ -68,7 +68,9 @@ def index():
 
 @app.get("/health")
 def health():
-    return jsonify({"status": "ok"})
+   index_html = open("index.html", "r").read()
+   return index_html
+
 
 @app.get("/about-us")
 def about_us():
