@@ -88,3 +88,10 @@ def about_us():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
+
+
+@app.get("/contact")
+def contact():
+    contact_html = open("contact.html", "r").read()
+    return contact_html
+
