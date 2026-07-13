@@ -2,7 +2,7 @@ import os
 
 import psycopg2
 from dotenv import load_dotenv
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from redis import Redis
 from redis.exceptions import RedisError
 
@@ -38,32 +38,8 @@ def get_redis_client():
 
 @app.get("/")
 def index():
-    redis_client = get_redis_client()
-    try:
-        visits = int(redis_client.incr("visits"))
-    except RedisError:
-        visits = "Couldnot connect to redis"
-
-    db_status = "unavailable"
-    try:
-        with get_pg_connection() as conn:
-            with conn.cursor() as cur:
-                cur.execute(
-                    "CREATE TABLE IF NOT EXISTS visits (id SERIAL PRIMARY KEY, count INTEGER NOT NULL)"
-                )
-                cur.execute("INSERT INTO visits (count) VALUES (%s)", (visits,))
-                conn.commit()
-                db_status = "connected"
-    except Exception:
-        db_status = "unavailable"
-
-    return jsonify(
-        {
-            "message": "Hello from Flask!",
-            "redis_visits": visits,
-            "database": db_status,
-        }
-    )
+    return render_template("index.html", title="Home", team_name = "Team Avengers")
+   
 
 
 @app.get("/health")
