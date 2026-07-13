@@ -18,12 +18,17 @@ source .venv/bin/activate
 
 ```
 
-Step 3: install the requirements
+Step 4: install the requirements
 ```
 pip3 install -r requirements.txt
 ```
 
-Step 4 : run the app
+Step 6 : set up the .env file  
+```
+create a duplicate file of .env.example and replace the port numbers with avaiable ones.
+```
+
+Step 6 : run the app
 ```
 python3 app.py
 ```

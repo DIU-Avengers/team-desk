@@ -42,7 +42,7 @@ def index():
     try:
         visits = int(redis_client.incr("visits"))
     except RedisError:
-        visits = 0
+        visits = "Couldnot connect to redis"
 
     db_status = "unavailable"
     try:
