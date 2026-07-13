@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ title }}</title>
+<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+  <main>
+    <h1>{{ team_name }}</h1>
+    <p class="lead">A Flask service backed by PostgreSQL and Redis.</p>
+    
+
+    <div class="visit-count">
+      This page has been visited <strong>{{ visit_count }}</strong> times
+    </div>
+
+
+    <ul>
+      <li>
+        <a class="endpoint" href="/">
+          <code>GET /</code>
+          <span class="desc">Visit counter &amp; service status</span>
+        </a>
+      </li>
+      <li>
+        <a class="endpoint" href="/health">
+          <code>GET /health</code>
+          <span class="desc">Health check</span>
+        </a>
+      </li>
+      <li>
+        <a class="endpoint" href="/about-us">
+          <code>GET /about-us</code>
+          <span class="desc">Team members</span>
+        </a>
+      </li>
+      <li>
+        <a class="endpoint" href="/contact">
+          <code>GET /contact</code>
+          <span class="desc">Contact us</span>
+        </a>
+      </li>
+    </ul>
+
+    <footer>Running on Flask &middot; Deployed with Docker</footer>
+  </main>
+</body>
+</html>
