@@ -38,7 +38,39 @@ def get_redis_client():
 
 @app.get("/")
 def index():
-    return render_template("index.html", title="Home", team_name = "Team Avengers")
+    team_members = [
+        {
+            "name": "Shagato Chowdhury",
+            "role": "DevOPS",
+            "avatar": "⚡",
+            "bio": "Infrastructure and deployment specialist"
+        },
+        {
+            "name": "Umma Iman Monea",
+            "role": "Backend Developer",
+            "avatar": "🚀",
+            "bio": "Building robust APIs and services"
+        },
+        {
+            "name": "Tamzidul Haque",
+            "role": "Frontend Developer",
+            "avatar": "🎨",
+            "bio": "Creating beautiful user experiences"
+        },
+        {
+            "name": "Tamima Rahman",
+            "role": "Database Engineer",
+            "avatar": "💾",
+            "bio": "Data architecture and optimization"
+        },
+        {
+            "name": "Puja Chowdhury",
+            "role": "Product Manager",
+            "avatar": "📋",
+            "bio": "Driving product vision and delivery"
+        }
+    ]
+    return render_template("index.html", title="Home", team_members=team_members)
    
 
 
@@ -60,14 +92,13 @@ def about_us():
             ]
         }
     )
-    
+
+ 
+@app.get("/contact")
+def contact():
+    return render_template("contact.html")   
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
-
-
-@app.get("/contact")
-def contact():
-    contact_html = open("contact.html", "r").read()
-    return contact_html
+ 
 

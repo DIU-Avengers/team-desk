@@ -3,49 +3,42 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ title }}</title>
-<link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <title>{{ title or "Team Avengers" }}</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
 </head>
-<body>
-  <main>
-    <h1>{{ team_name }}</h1>
-    <p class="lead">A Flask service backed by PostgreSQL and Redis.</p>
-    
+<body class="bg-gray-900 text-white">
+  <!-- Navbar -->
+  <nav class="navbar bg-gray-800/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-700">
+    <div class="navbar-end">
+        <a href="/" class="text-xl font-bold text-yellow-400">⚡ DIU Avengers</a>
+      </div>
+    <div class="container mx-auto px-4">
+      
+      <div class="navbar-start">
+        
+        <ul class="menu menu-horizontal px-1 gap-2">
+          <li><a href="/" class="text-gray-300 hover:text-yellow-400 transition-colors">Home</a></li>
+          <li><a href="/about-us" class="text-gray-300 hover:text-yellow-400 transition-colors">About</a></li>
+          <li><a href="/contact" class="text-gray-300 hover:text-yellow-400 transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      
+    </div>
+  </nav>
 
-    <div class="visit-count">
-      This page has been visited <strong>{{ visit_count }}</strong> times
+  <!-- Main Content -->
+  {% block content %}{% endblock %}
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 border-t border-gray-700 py-8">
+    <div class="container mx-auto px-4 text-center text-gray-400">
+      <p>DIU Avengers &copy; 2026. All rights reserved.</p>
+      <p class="text-sm mt-2">Powered by Flask, PostgreSQL & Redis</p>
     </div>
 
 
-    <ul>
-      <li>
-        <a class="endpoint" href="/">
-          <code>GET /</code>
-          <span class="desc">Visit counter &amp; service status</span>
-        </a>
-      </li>
-      <li>
-        <a class="endpoint" href="/health">
-          <code>GET /health</code>
-          <span class="desc">Health check</span>
-        </a>
-      </li>
-      <li>
-        <a class="endpoint" href="/about-us">
-          <code>GET /about-us</code>
-          <span class="desc">Team members</span>
-        </a>
-      </li>
-      <li>
-        <a class="endpoint" href="/contact">
-          <code>GET /contact</code>
-          <span class="desc">Contact us</span>
-        </a>
-      </li>
-    </ul>
-
-    <footer>Running on Flask &middot; Deployed with Docker</footer>
-  </main>
+    </footer>
 </body>
 </html>
