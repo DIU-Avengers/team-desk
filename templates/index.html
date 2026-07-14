@@ -1,1 +1,71 @@
 {% extends 'base.html' %}
+
+{% block content %}
+  <!-- Hero Section -->
+  <section class="hero min-h-screen relative overflow-hidden">
+    <div class="absolute inset-0">
+      <img 
+        src="{{ url_for('static', filename='avangers.jpeg') }}" 
+        alt="DIU Avengers" 
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-900/50 to-gray-900"></div>
+    </div>
+    <div class="hero-content relative z-10 text-center">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-5xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl">
+          <span class="text-yellow-400">DIU</span> Avengers
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-lg">
+          Daffodil International University<br>
+          Our Team. Our Mission. Our Uni.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#team" class="btn btn-warning btn-lg text-black">
+            Meet Our Team
+          </a>
+          <a href="/about-us" class="btn btn-outline btn-warning btn-lg">
+            Learn More
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Members Section -->
+  <section id="team" class="py-20 bg-gray-900">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-4">
+        <span class="text-yellow-400">Our</span> Team Members
+      </h2>
+      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+        5 Members. 1 DIU. 1 Avengers.
+      </p>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for member in team_members %}
+        <div class="card bg-gray-800 border border-gray-700 hover:border-yellow-500/30 transition-all hover:-translate-y-2">
+          <figure class="px-8 pt-8">
+            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-400 to-red-600 flex items-center justify-center text-5xl">
+              {{ member.avatar or '👤' }}
+            </div>
+          </figure>
+          <div class="card-body text-center">
+            <h3 class="card-title text-xl font-bold justify-center">
+              {{ member.name }}
+            </h3>
+            <p class="text-yellow-400 font-semibold">
+              {{ member.role }}
+            </p>
+            {% if member.bio %}
+            <p class="text-gray-400 mt-2">
+              {{ member.bio }}
+            </p>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endblock %}
