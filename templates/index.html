@@ -1,71 +1,101 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <!-- Hero Section -->
-  <section class="hero min-h-screen relative overflow-hidden">
-    <div class="absolute inset-0">
-      <img 
-        src="{{ url_for('static', filename='avangers.jpeg') }}" 
-        alt="DIU Avengers" 
-        class="w-full h-full object-cover"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-900/50 to-gray-900"></div>
-    </div>
-    <div class="hero-content relative z-10 text-center">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-5xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl">
-          <span class="text-yellow-400">DIU</span> Avengers
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-lg">
-          Daffodil International University<br>
-          Our Team. Our Mission. Our Uni.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-          <a href="#team" class="btn btn-warning btn-lg text-black">
-            Meet Our Team
-          </a>
-          <a href="/about-us" class="btn btn-outline btn-warning btn-lg">
-            Learn More
-          </a>
-        </div>
+<!-- Hero Section -->
+<section class="hero min-h-screen relative overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="{{ url_for('static', filename='avangers.jpeg') }}" alt="DIU Avengers"
+      class="w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-gray-900/70 via-gray-900/50 to-gray-900"></div>
+  </div>
+  <div class="hero-content relative z-10 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-5xl md:text-7xl font-black text-white mb-6 drop-shadow-2xl">
+        <span class="text-yellow-400">DIU</span> Avengers
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-200 mb-8 drop-shadow-lg">
+        Daffodil International University<br>
+        Our Team. Our Mission. Our Uni.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="#team" class="btn btn-warning btn-lg text-black">
+          Meet Our Team
+        </a>
+        <a href="/about-us" class="btn btn-outline btn-warning btn-lg">
+          Learn More
+        </a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Team Members Section -->
-  <section id="team" class="py-20 bg-gray-900">
-    <div class="container mx-auto px-4">
-      <h2 class="text-4xl font-bold text-center mb-4">
-        <span class="text-yellow-400">Our</span> Team Members
-      </h2>
-      <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
-        5 Members. 1 DIU. 1 Avengers.
-      </p>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {% for member in team_members %}
-        <div class="card bg-gray-800 border border-gray-700 hover:border-yellow-500/30 transition-all hover:-translate-y-2">
-          <figure class="px-8 pt-8">
-            <div class="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-400 to-red-600 flex items-center justify-center text-5xl">
-              {{ member.avatar or '👤' }}
-            </div>
-          </figure>
-          <div class="card-body text-center">
-            <h3 class="card-title text-xl font-bold justify-center">
-              {{ member.name }}
-            </h3>
-            <p class="text-yellow-400 font-semibold">
-              {{ member.role }}
-            </p>
-            {% if member.bio %}
-            <p class="text-gray-400 mt-2">
-              {{ member.bio }}
-            </p>
+<!-- Team Members Section -->
+<section id="team" class="py-20 bg-gray-900">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold text-center mb-4">
+      <span class="text-yellow-400">Our</span> Team Members
+    </h2>
+    <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+      5 Members. 1 DIU. 1 Avengers.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for member in team_members %}
+      <div
+        class="card bg-gray-800 border border-gray-700 hover:border-yellow-500/30 transition-all hover:-translate-y-2">
+        <figure class="px-8 pt-8">
+          <div
+            class="w-32 h-32 rounded-full bg-gradient-to-br from-yellow-400 to-red-600 flex items-center justify-center text-5xl">
+            {{ member.avatar or '👤' }}
+          </div>
+        </figure>
+        <div class="card-body text-center">
+          <h3 class="card-title text-xl font-bold justify-center">
+            {{ member.name }}
+          </h3>
+          <p class="text-yellow-400 font-semibold">
+            {{ member.role }}
+          </p>
+          {% if member.bio %}
+          <p class="text-gray-400 mt-2">
+            {{ member.bio }}
+          </p>
+          {% endif %}
+          {% if member.social_links %}
+          <div class="flex justify-center gap-3 mt-4">
+            {% if member.social_links.github %}
+            <a href="{{ member.social_links.github }}" target="_blank"
+              class="text-gray-400 hover:text-yellow-400 transition-colors" title="GitHub" aria-label="GitHub">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.387.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.332-5.467-5.93 0-1.31.468-2.382 1.235-3.222-.123-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.3 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.29-1.552 3.297-1.23 3.297-1.23 .653 1.653.242 2.873.12 3.176.77.84 1.233 1.912 1.233 3.222 0 4.61-2.807 5.625-5.48 5.92.43.37.823 1.096.823 2.21 0 1.594-.015 2.877-.015 3.27 0 .32.216.695.825.576C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+            </a>
+            {% endif %}
+            {% if member.social_links.linkedin %}
+            <a href="{{ member.social_links.linkedin }}" target="_blank"
+              class="text-gray-400 hover:text-yellow-400 transition-colors" title="LinkedIn" aria-label="LinkedIn">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM7 19H4V9h3v10zM5.5 7.75C4.67 7.75 4 7.08 4 6.25S4.67 4.75 5.5 4.75 7 5.42 7 6.25 6.33 7.75 5.5 7.75zM20 19h-3v-5.5c0-1.32-.03-3.03-1.85-3.03-1.85 0-2.13 1.44-2.13 2.93V19h-3V9h2.88v1.36h.04C15.3 9.61 17 8 20 8V19z" />
+              </svg>
+            </a>
+            {% endif %}
+            {% if member.social_links.twitter %}
+            <a href="{{ member.social_links.twitter }}" target="_blank"
+              class="text-gray-400 hover:text-yellow-400 transition-colors" title="Twitter" aria-label="Twitter">
+              <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M23.643 4.937c-.835.37-1.732.616-2.675.728.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13C18.4 3.4 17.28 3 16.06 3c-2.27 0-4.113 1.842-4.113 4.114 0 .323.035.638.106.94-3.42-.17-6.455-1.81-8.482-4.3-.355.61-.558 1.318-.558 2.073 0 1.43.728 2.69 1.834 3.43-.676-.021-1.312-.207-1.868-.517v.05c0 1.996 1.418 3.66 3.299 4.04-.345.094-.708.144-1.083.144-.265 0-.523-.026-.775-.074.523 1.636 2.04 2.828 3.836 2.864-1.405 1.1-3.176 1.754-5.1 1.754-.331 0-.659-.02-.98-.058 1.815 1.166 3.973 1.847 6.29 1.847 7.55 0 11.68-6.256 11.68-11.68 0-.178-.004-.355-.012-.53.803-.58 1.5-1.3 2.05-2.123z" />
+              </svg>
+            </a>
             {% endif %}
           </div>
+          {% endif %}
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
-  </section>
+  </div>
+</section>
 {% endblock %}
