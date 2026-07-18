@@ -1,5 +1,11 @@
 Flask
+Flask-SQLAlchemy
+SQLAlchemy
+python-dotenv
+Flask-Migrate
+Flask-WTF
+WTForms
 psycopg2-binary
 redis
 gunicorn
-python-dotenv
+
