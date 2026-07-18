@@ -43,62 +43,85 @@ def index():
             "name": "Shagato Chowdhury",
             "role": "DevOPS",
             "avatar": "⚡",
-            "bio": "Infrastructure and deployment specialist"
+            "bio": "Infrastructure and deployment specialist",
+            "social_links": {
+                "github": "https://github.com",
+                "linkedin": "https://linkedin.com",
+                "twitter": "https://twitter.com"
+            }
         },
         {
             "name": "Umma Iman Monea",
             "role": "Backend Developer",
             "avatar": "🚀",
-            "bio": "Building robust APIs and services"
+            "bio": "Building robust APIs and services",
+            "social_links": {
+                "github": "https://github.com",
+                "linkedin": "https://linkedin.com",
+                "twitter": "https://twitter.com"
+            }
         },
         {
             "name": "Tamzidul Haque",
             "role": "Frontend Developer",
             "avatar": "🎨",
-            "bio": "Creating beautiful user experiences"
+            "bio": "Creating beautiful user experiences",
+            "social_links": {
+                "github": "https://github.com",
+                "linkedin": "https://linkedin.com",
+                "twitter": "https://twitter.com"
+            }
         },
         {
             "name": "Tamima Rahman",
             "role": "Database Engineer",
             "avatar": "💾",
-            "bio": "Data architecture and optimization"
+            "bio": "Data architecture and optimization",
+            "social_links": {
+                "github": "https://github.com",
+                "linkedin": "https://linkedin.com",
+                "twitter": "https://twitter.com"
+            }
         },
         {
             "name": "Puja Chowdhury",
             "role": "Product Manager",
             "avatar": "📋",
-            "bio": "Driving product vision and delivery"
+            "bio": "Driving product vision and delivery",
+            "social_links": {
+                "github": "https://github.com",
+                "linkedin": "https://linkedin.com",
+                "twitter": "https://twitter.com"
+            }
         }
     ]
     return render_template("index.html", title="Home", team_members=team_members)
-   
 
 
 @app.get("/health")
 def health():
-   index_html = open("index.html", "r").read()
-   return index_html
+    index_html = open("index.html", "r").read()
+    return index_html
 
 
 @app.get("/about-us")
 def about_us():
     return jsonify(
         {
-            "members" : [
+            "members": [
                 {
-                    "name" : "Shagato Chowdhury",
-                    "role" : "DevOPS"
+                    "name": "Shagato Chowdhury",
+                    "role": "DevOPS"
                 }
             ]
         }
     )
 
- 
+
 @app.get("/contact")
 def contact():
-    return render_template("contact.html")   
+    return render_template("contact.html")
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
- 
-
