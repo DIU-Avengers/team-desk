@@ -125,3 +125,14 @@ def contact():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=PORT, debug=DEBUG)
+
+@app.get("/tamima")
+def tamima():
+    return jsonify(
+        {
+            "name": "Tamima Rahman",
+            "role": "Database Engineer",
+            "message": "Hello! This is my first contribution to Team Desk. 🎉"
+        }
+    )
+
